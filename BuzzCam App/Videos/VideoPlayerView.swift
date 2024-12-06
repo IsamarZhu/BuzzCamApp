@@ -19,9 +19,12 @@ struct PlayerView: UIViewRepresentable {
 
 class PlayerUIView: UIView {
     private let playerLayer = AVPlayerLayer()
+    private let opacityGradientLayer = CAGradientLayer()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        configureAudioSession()
         
         if let fileURL = Bundle.main.url(forResource: "patagonia_vid_1", withExtension: "mp4") {
             let player = AVPlayer(url: fileURL)
@@ -37,12 +40,38 @@ class PlayerUIView: UIView {
                                                    object: player.currentItem)
 
             layer.addSublayer(playerLayer)
+            
+            addOpacityGradient()
         }
         else {
             print("video not found")
         }
         
     }
+    
+    private func configureAudioSession() {
+        do {
+            let audioSession = AVAudioSession.sharedInstance()
+            try audioSession.setCategory(.ambient, options: [.mixWithOthers])
+            try audioSession.setActive(true)
+        } catch {
+            print("Failed to set up audio session: \(error.localizedDescription)")
+        }
+    }
+    
+    private func addOpacityGradient() {
+            opacityGradientLayer.colors = [
+                UIColor.clear.cgColor,           // Fully transparent
+                UIColor(red: 54/255, green: 58/255, blue: 1/255, alpha: 1).cgColor // 70% opacity
+            ]
+        opacityGradientLayer.startPoint = CGPoint(x: 0.5, y: 0.9) // Top-center
+            opacityGradientLayer.endPoint = CGPoint(x: 0.5, y: 1)   // Bottom-center
+            opacityGradientLayer.frame = bounds
+            opacityGradientLayer.zPosition = 1 // Above the video layer
+            layer.addSublayer(opacityGradientLayer)
+        }
+        
+    
     
     @objc func playerItemDidReachEnd(notification: Notification) {
         if let playerItem = notification.object as? AVPlayerItem {
@@ -57,5 +86,6 @@ class PlayerUIView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         playerLayer.frame = bounds
+        opacityGradientLayer.frame = bounds
     }
 }

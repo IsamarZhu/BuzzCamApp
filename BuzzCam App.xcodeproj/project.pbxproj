@@ -29,7 +29,6 @@
 		216B6DC92B757CF8005D5538 /* LoadingParticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216B6DC82B757CF8005D5538 /* LoadingParticle.swift */; };
 		218DACB72B7ABF770085981D /* Liquid in Frameworks */ = {isa = PBXBuildFile; productRef = 218DACB62B7ABF770085981D /* Liquid */; };
 		21A07DED2B98F64300424B27 /* PresetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A07DEC2B98F64300424B27 /* PresetView.swift */; };
-		21A5600B2B16A55D00292A6A /* message.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A5600A2B16A55D00292A6A /* message.pb.swift */; };
 		21A5600E2B1942AF00292A6A /* AudioConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A5600D2B1942AF00292A6A /* AudioConfigView.swift */; };
 		21BEAA4B2AFEE135001B89E6 /* BluetoothModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BEAA4A2AFEE135001B89E6 /* BluetoothModelHelper.swift */; };
 		21C0A2062AE3152800BA2ABC /* StatusesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C0A2052AE3152800BA2ABC /* StatusesView.swift */; };
@@ -60,7 +59,7 @@
 		21DAA5F12ADF222000E70BF2 /* BuzzCam_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DAA5F02ADF222000E70BF2 /* BuzzCam_AppUITests.swift */; };
 		21DAA5F32ADF222000E70BF2 /* BuzzCam_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DAA5F22ADF222000E70BF2 /* BuzzCam_AppUITestsLaunchTests.swift */; };
 		21DAA6002AE0746B00E70BF2 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DAA5FF2AE0746B00E70BF2 /* MainView.swift */; };
-		21DE293C2D037FDA00C45F89 /* message.pb (3).swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DE293B2D037FDA00C45F89 /* message.pb (3).swift */; };
+		21DE293C2D037FDA00C45F89 /* message.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DE293B2D037FDA00C45F89 /* message.pb.swift */; };
 		21F495E82B212DDF008E3808 /* SensingConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F495E72B212DDF008E3808 /* SensingConfigView.swift */; };
 		21F495EA2B2783DA008E3808 /* CameraConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F495E92B2783DA008E3808 /* CameraConfigView.swift */; };
 /* End PBXBuildFile section */
@@ -104,7 +103,6 @@
 		216B6DC52B757C49005D5538 /* StarryNightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarryNightView.swift; sourceTree = "<group>"; };
 		216B6DC82B757CF8005D5538 /* LoadingParticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingParticle.swift; sourceTree = "<group>"; };
 		21A07DEC2B98F64300424B27 /* PresetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetView.swift; sourceTree = "<group>"; };
-		21A5600A2B16A55D00292A6A /* message.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = message.pb.swift; sourceTree = "<group>"; };
 		21A5600D2B1942AF00292A6A /* AudioConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioConfigView.swift; sourceTree = "<group>"; };
 		21BEAA4A2AFEE135001B89E6 /* BluetoothModelHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothModelHelper.swift; sourceTree = "<group>"; };
 		21C0A2052AE3152800BA2ABC /* StatusesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusesView.swift; sourceTree = "<group>"; };
@@ -132,7 +130,7 @@
 		21DAA5F02ADF222000E70BF2 /* BuzzCam_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuzzCam_AppUITests.swift; sourceTree = "<group>"; };
 		21DAA5F22ADF222000E70BF2 /* BuzzCam_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuzzCam_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		21DAA5FF2AE0746B00E70BF2 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		21DE293B2D037FDA00C45F89 /* message.pb (3).swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "message.pb (3).swift"; sourceTree = "<group>"; };
+		21DE293B2D037FDA00C45F89 /* message.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = message.pb.swift; sourceTree = "<group>"; };
 		21F495E72B212DDF008E3808 /* SensingConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensingConfigView.swift; sourceTree = "<group>"; };
 		21F495E92B2783DA008E3808 /* CameraConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraConfigView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -231,8 +229,7 @@
 		21C0A21C2AF04A3500BA2ABC /* Protobuf */ = {
 			isa = PBXGroup;
 			children = (
-				21DE293B2D037FDA00C45F89 /* message.pb (3).swift */,
-				21A5600A2B16A55D00292A6A /* message.pb.swift */,
+				21DE293B2D037FDA00C45F89 /* message.pb.swift */,
 			);
 			path = Protobuf;
 			sourceTree = "<group>";
@@ -488,7 +485,6 @@
 				21C0A21B2AEC4E1100BA2ABC /* BluetoothConstants.swift in Sources */,
 				21C0A20A2AE320FE00BA2ABC /* NearbyDevices.swift in Sources */,
 				2127C3BA2BCF1A3F00196455 /* CameraViewTab.swift in Sources */,
-				21A5600B2B16A55D00292A6A /* message.pb.swift in Sources */,
 				21C0A2062AE3152800BA2ABC /* StatusesView.swift in Sources */,
 				2127C3B22BCF169C00196455 /* PhotoLibrary.swift in Sources */,
 				2127C3A22BCF15D600196455 /* CameraApp.swift in Sources */,
@@ -509,7 +505,7 @@
 				2127C3B42BCF16AA00196455 /* PhotoView.swift in Sources */,
 				21C907BD2B7EB6A5007B33A1 /* SystemControlView.swift in Sources */,
 				2127C3A82BCF163F00196455 /* PhotoAsset.swift in Sources */,
-				21DE293C2D037FDA00C45F89 /* message.pb (3).swift in Sources */,
+				21DE293C2D037FDA00C45F89 /* message.pb.swift in Sources */,
 				2127C39E2BCF15AA00196455 /* CachedImageManager.swift in Sources */,
 				21DAA5D52ADF221F00E70BF2 /* BuzzCam_AppApp.swift in Sources */,
 				21D26FF82BBDE33A008A4EF2 /* PresetButtonStore.swift in Sources */,

@@ -48,7 +48,7 @@ struct MainView: View {
                             // upper box
                             ZStack {
                                 PlayerView().frame(maxWidth: .infinity, maxHeight: .infinity) // Ensure the PlayerView fills the available space
-                                    .edgesIgnoringSafeArea(.all)
+                                    .edgesIgnoringSafeArea(.all).padding(.bottom, -20)
                                 VStack(alignment: .center){
                                     HStack {
                                         // Get name of device
@@ -197,49 +197,50 @@ struct MainView: View {
                             .opacity(1) // Set the overall opacity to 1 since the gradient handles opacity
                             .cornerRadius(15)
                             .offset(y: -700)
-                            .padding(.bottom, -700)
+                            .padding(.bottom, -670)
                             .shadow(color: .black, radius: 10, x: 0, y: 5)
                             
-                            // camera capture
-                            VStack {
-                                HStack {
-                                    ZStack {
-                                        Button(action: {bluetoothModel.forceCameraCapture()}) {
-                                            Image("camera.circle.fill")
-                                                .resizable()
-                                                .frame(width: 100, height: 100)
-                                                .scaledToFit()
-                                                .foregroundColor(Color(red: 0x3D / 255, green: 0xA5 / 255, blue: 0xD9 / 255))
-                                        }
-                                        .frame(width: 100, height: 100)
-                                        .padding()
-                                        
-                                        Image("honeybee")
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .frame(width: 60, height: 60)
-                                            .rotationEffect(.degrees(45))
-                                            .offset(x: 35, y: -35)
-                                            .shadow(color: .black, radius: 3, x: 0, y: 2)
-                                            .scaleEffect(beeScale)
-                                            .onAppear {
-                                                withAnimation(Animation.easeInOut(duration: 1.0).repeatForever()) {
-                                                    self.beeScale = 1.08
-                                                }
-                                            }
-                                        
-                                    }
-                                    
-                                    Text("Camera Capture").font(customFontTextBold).padding()
-                                }.padding(.vertical, 15)
-                                    .frame(
-                                        maxHeight: .infinity,
-                                        alignment: .center
-                                    )
-                                    .background(Color(white:0.89))
-                                    .cornerRadius(15)
-                            }.padding(.vertical, 20)
+//                            // camera capture
+//                            VStack {
+//                                HStack {
+//                                    ZStack {
+//                                        Button(action: {bluetoothModel.forceCameraCapture()}) {
+//                                            Image("camera.circle.fill")
+//                                                .resizable()
+//                                                .frame(width: 100, height: 100)
+//                                                .scaledToFit()
+//                                                .foregroundColor(Color(red: 0x3D / 255, green: 0xA5 / 255, blue: 0xD9 / 255))
+//                                        }
+//                                        .frame(width: 100, height: 100)
+//                                        .padding()
+//                                        
+//                                        Image("honeybee")
+//                                            .resizable()
+//                                            .aspectRatio(contentMode: .fit)
+//                                            .frame(width: 60, height: 60)
+//                                            .rotationEffect(.degrees(45))
+//                                            .offset(x: 35, y: -35)
+//                                            .shadow(color: .black, radius: 3, x: 0, y: 2)
+//                                            .scaleEffect(beeScale)
+//                                            .onAppear {
+//                                                withAnimation(Animation.easeInOut(duration: 1.0).repeatForever()) {
+//                                                    self.beeScale = 1.08
+//                                                }
+//                                            }
+//                                        
+//                                    }
+//                                    
+//                                    Text("Camera Capture").font(customFontTextBold).padding()
+//                                }.padding(.vertical, 15)
+//                                    .frame(
+//                                        maxHeight: .infinity,
+//                                        alignment: .center
+//                                    )
+//                                    .background(Color(white:0.89))
+//                                    .cornerRadius(15)
+//                            }.padding(.vertical, 20)
                             
+                            Spacer()
                             // statuses dropdown
                             StatusesView()
                             Spacer()
@@ -249,7 +250,9 @@ struct MainView: View {
                             // ranging dropdown
                             RangingView()
 
-                        }.background(Color(red: 54/255, green: 58/255, blue: 1/255))
+                        }.background(
+                            Color(red: 54/255, green: 58/255, blue: 1/255)
+                        )
                     } else {
                         // Placeholder view while the peripheral name is not available, waiting for it to load
                         VStack {
