@@ -113,6 +113,28 @@ struct StatusesView: View {
                     .background(Color(white: 0.98))
                     .cornerRadius(10)
                     
+                    VStack(alignment: .leading) {
+                        Text("GPS Location")
+                            .font(customFontTextBold)
+                            .fontWeight(.bold)
+                        VStack (alignment: .leading, spacing: 10){
+                            Text("Latitude: " + String(bluetoothModel.systemInfoPacketData?.gps_location.lat ?? 0))
+                                .font(customFontText)
+                            Text("Longitude: " +  String(bluetoothModel.systemInfoPacketData?.gps_location.lon ?? 0))
+                                .font(customFontText)
+                            Text("Elevation: " +  String(bluetoothModel.systemInfoPacketData?.gps_location.elev ?? 0))
+                                .font(customFontText)
+                        }
+                        .padding()
+                    }
+                    .padding()
+                    .frame(
+                        minWidth: 0,
+                        maxWidth: .infinity,
+                        alignment: .leading)
+                    .background(Color(white: 0.98))
+                    .cornerRadius(10)
+                    
                     
                 }
                 .padding()

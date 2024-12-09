@@ -259,7 +259,9 @@ class BluetoothModel: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
                         mark_number: message.systemInfoPacket.hasMarkState ? message.systemInfoPacket.markState.markNumber :
                             self.systemInfoPacketData?.mark_number ?? 0,
                         
-                        discovered_devices: message.systemInfoPacket.discoveredDevices
+                        discovered_devices: message.systemInfoPacket.discoveredDevices,
+                        
+                        gps_location: message.systemInfoPacket.hasGpsLocation ? message.systemInfoPacket.gpsLocation : self.systemInfoPacketData?.gps_location ?? Location()
                     )
                 }
                 print("Updated systemInfoPacketData with CE71 characteristic")

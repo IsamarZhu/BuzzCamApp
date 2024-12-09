@@ -22,7 +22,7 @@ struct SystemInfoPacketData {
     var device_recording: Bool
     var mark_number: UInt32
     var discovered_devices: [Device]
-
+    var gps_location: Location
     
     mutating func reset() {
         // set property default values
@@ -39,6 +39,7 @@ struct SystemInfoPacketData {
         device_recording = false
         mark_number = 0
         discovered_devices = []
+        gps_location = Location()
     }
 }
 
