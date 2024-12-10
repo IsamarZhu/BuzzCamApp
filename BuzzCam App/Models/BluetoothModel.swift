@@ -22,6 +22,7 @@ class BluetoothModel: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
     @Published var configPacketData_LowPower: ConfigPacketData_LowPower?
     @Published var specialFunctionData: SpecialFunctionData?
     @Published var configPacketData: ConfigPacketData?
+    @Published var classifierPacketData: ClassifierPacketData?
     
     // Service and characteristic UUIDs
     private let serviceUUID = CBUUID(string: "CE80")
@@ -99,6 +100,7 @@ class BluetoothModel: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
         configPacketData_LowPower?.reset()
         specialFunctionData?.reset()
         configPacketData?.reset()
+        classifierPacketData?.reset()
         
         // Start scanning again when reset and disconnected
         if centralManager.state == .poweredOn {
@@ -215,6 +217,9 @@ class BluetoothModel: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
             // get a packet
             let message = try Packet(serializedData: data)
             // Use a switch statement to handle different characteristics
+            let payload: Packet.OneOf_Payload = message.payload ?? .systemInfoPacket(SystemInfoPacket())
+        
+            print("payload \(payload)")
             
             switch characteristic.uuid {
             case characteristicUUID_CE71:
@@ -225,44 +230,64 @@ class BluetoothModel: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
                 }
                 
                 DispatchQueue.main.async {
-                    self.systemInfoPacketData = SystemInfoPacketData(
-                        index: message.systemInfoPacket.hasSimpleSensorReading ? message.systemInfoPacket.simpleSensorReading.index :
-                            self.systemInfoPacketData?.index ?? 0,
+                    if case .systemInfoPacket(_) = payload {
                         
-                        temperature: message.systemInfoPacket.hasSimpleSensorReading ? message.systemInfoPacket.simpleSensorReading.temperature :
-                            self.systemInfoPacketData?.temperature ?? 0,
+                        self.systemInfoPacketData = SystemInfoPacketData(
+                            index: message.systemInfoPacket.hasSimpleSensorReading ? message.systemInfoPacket.simpleSensorReading.index :
+                                self.systemInfoPacketData?.index ?? 0,
+                            
+                            temperature: message.systemInfoPacket.hasSimpleSensorReading ? message.systemInfoPacket.simpleSensorReading.temperature :
+                                self.systemInfoPacketData?.temperature ?? 0,
+                            
+                            humidity: message.systemInfoPacket.hasSimpleSensorReading ? message.systemInfoPacket.simpleSensorReading.humidity :
+                                self.systemInfoPacketData?.humidity ?? 0,
+                            
+                            co2: message.systemInfoPacket.hasSimpleSensorReading ? message.systemInfoPacket.simpleSensorReading.co2 :
+                                self.systemInfoPacketData?.co2 ?? 0,
+                            
+                            light_level: message.systemInfoPacket.hasSimpleSensorReading ? message.systemInfoPacket.simpleSensorReading.lightLevel :
+                                self.systemInfoPacketData?.light_level ?? 0,
+                            
+                            sd_detected: message.systemInfoPacket.hasSdcardState ? message.systemInfoPacket.sdcardState.detected : self.systemInfoPacketData?.sd_detected ?? false,
+                            
+                            space_remaining: message.systemInfoPacket.hasSdcardState ? message.systemInfoPacket.sdcardState.spaceRemaining :
+                                self.systemInfoPacketData?.space_remaining ?? 0,
+                            
+                            estimated_recording_time: message.systemInfoPacket.hasSdcardState ? message.systemInfoPacket.sdcardState.estimatedRemainingRecordingTime : self.systemInfoPacketData?.estimated_recording_time ?? 0,
+                            
+                            battery_charging: message.systemInfoPacket.hasBatteryState ? message.systemInfoPacket.batteryState.charging :
+                                self.systemInfoPacketData?.battery_charging ?? false,
+                            
+                            battery_voltage: message.systemInfoPacket.hasBatteryState ? message.systemInfoPacket.batteryState.voltage :
+                                self.systemInfoPacketData?.battery_voltage ?? 0,
+                            
+                            device_recording: message.systemInfoPacket.deviceRecording,
+                            
+                            mark_number: message.systemInfoPacket.hasMarkState ? message.systemInfoPacket.markState.markNumber :
+                                self.systemInfoPacketData?.mark_number ?? 0,
+                            
+                            discovered_devices: message.systemInfoPacket.discoveredDevices,
+                            
+                            gps_location: message.systemInfoPacket.hasGpsLocation ? message.systemInfoPacket.gpsLocation : self.systemInfoPacketData?.gps_location ?? Location()
+                        )
                         
-                        humidity: message.systemInfoPacket.hasSimpleSensorReading ? message.systemInfoPacket.simpleSensorReading.humidity :
-                            self.systemInfoPacketData?.humidity ?? 0,
-                        
-                        co2: message.systemInfoPacket.hasSimpleSensorReading ? message.systemInfoPacket.simpleSensorReading.co2 :
-                            self.systemInfoPacketData?.co2 ?? 0,
-                        
-                        light_level: message.systemInfoPacket.hasSimpleSensorReading ? message.systemInfoPacket.simpleSensorReading.lightLevel :
-                            self.systemInfoPacketData?.light_level ?? 0,
-                        
-                        sd_detected: message.systemInfoPacket.hasSdcardState ? message.systemInfoPacket.sdcardState.detected : self.systemInfoPacketData?.sd_detected ?? false,
-                        
-                        space_remaining: message.systemInfoPacket.hasSdcardState ? message.systemInfoPacket.sdcardState.spaceRemaining :
-                            self.systemInfoPacketData?.space_remaining ?? 0,
-                        
-                        estimated_recording_time: message.systemInfoPacket.hasSdcardState ? message.systemInfoPacket.sdcardState.estimatedRemainingRecordingTime : self.systemInfoPacketData?.estimated_recording_time ?? 0,
-                        
-                        battery_charging: message.systemInfoPacket.hasBatteryState ? message.systemInfoPacket.batteryState.charging :
-                            self.systemInfoPacketData?.battery_charging ?? false,
-                        
-                        battery_voltage: message.systemInfoPacket.hasBatteryState ? message.systemInfoPacket.batteryState.voltage :
-                            self.systemInfoPacketData?.battery_voltage ?? 0,
-                        
-                        device_recording: message.systemInfoPacket.deviceRecording,
-                        
-                        mark_number: message.systemInfoPacket.hasMarkState ? message.systemInfoPacket.markState.markNumber :
-                            self.systemInfoPacketData?.mark_number ?? 0,
-                        
-                        discovered_devices: message.systemInfoPacket.discoveredDevices,
-                        
-                        gps_location: message.systemInfoPacket.hasGpsLocation ? message.systemInfoPacket.gpsLocation : self.systemInfoPacketData?.gps_location ?? Location()
-                    )
+                        print("systemInfoPacketData:  \(self.systemInfoPacketData)")
+                    }
+                    else if case .classifierPacket(_) = payload {
+                        self.classifierPacketData = ClassifierPacketData(
+                            classifier_version: message.classifierPacket.classifierVersion,
+                            epoch_last_detection: message.classifierPacket.lastDetection,
+                            buzz_count_total: message.classifierPacket.buzzCountTotal,
+                            species_1_count_total: message.classifierPacket.species1CountTotal,
+                            species_2_count_total: message.classifierPacket.species2CountTotal,
+                            buzz_count_day: message.classifierPacket.buzzCountDay,
+                            species_1_count_day: message.classifierPacket.species1CountDay,
+                            species_2_count_day: message.classifierPacket.species2CountDay
+                        )
+                    }
+                    
+                    
+                    
                 }
                 print("Updated systemInfoPacketData with CE71 characteristic")
             case characteristicUUID_CE72:

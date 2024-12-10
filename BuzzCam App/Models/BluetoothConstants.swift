@@ -140,4 +140,25 @@ struct ConfigPacketData {
     }
 }
 
-
+struct ClassifierPacketData {
+    var classifier_version: Float = 0.0
+    var epoch_last_detection: UInt64 = 0
+    var buzz_count_total: UInt32 = 0
+    var species_1_count_total: UInt32 = 0
+    var species_2_count_total: UInt32 = 0
+    var buzz_count_day: UInt32 = 0
+    var species_1_count_day: UInt32 = 0
+    var species_2_count_day: UInt32 = 0
+    
+    mutating func reset() {
+        classifier_version = 0.0
+        epoch_last_detection = 0
+        buzz_count_total = 0
+        species_1_count_total = 0
+        species_2_count_total = 0
+        buzz_count_day = 0
+        species_1_count_day = 0
+        species_2_count_day = 0
+    }
+    
+}

@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-struct StatusesView: View {
+struct ClassifierView: View {
     @State private var isExpanded = false
     @State private var deviceEnabled = true
     @EnvironmentObject var bluetoothModel: BluetoothModel
@@ -22,7 +22,7 @@ struct StatusesView: View {
         VStack (alignment: .leading) {
             HStack {
                 Spacer()
-                Text("Statuses")
+                Text("Classifier Info")
                     .font(customFontTitle)
                     .foregroundColor(Color.white)
                     .shadow(color: .black, radius: 5, x: 0, y: 2)
@@ -37,7 +37,7 @@ struct StatusesView: View {
             .frame(maxWidth: .infinity)
             .background(
                 GeometryReader { proxy in
-                        Image("flowers 5")
+                        Image("flowers 6")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: proxy.size.width, height: proxy.size.height)
@@ -54,31 +54,15 @@ struct StatusesView: View {
             }
             if isExpanded {
                 VStack (alignment: .leading, spacing: 20) {
-                    VStack (alignment: .leading) {
-                        HStack {
-                            Text("Device enabled").font(customFontTextBold)
-                                .fontWeight(.bold).padding(.horizontal)
-                            
-                            Toggle("",isOn: $deviceEnabled).labelsHidden().onChange(of: deviceEnabled) {
-                                // Call your function when the toggle is changed
-                                bluetoothModel.deviceEnabledUpdates(deviceEnabled: deviceEnabled)
-                            }.tint(Color(red: 117/255, green: 13/255, blue: 55/255, opacity: 0.5))
-                        }
-                        
-                        Text("Needs to be activated for the recorder to run. However, this will be disable in slave mode").font(customFontText).padding(.leading)
-                    }
-                    
                     
                     VStack(alignment: .leading) {
-                        Text("SD Card Status")
+                        Text("Information")
                             .font(customFontTextBold)
                             .fontWeight(.bold)
                         VStack (alignment: .leading, spacing: 10){
-                            Text("Detected: " + String(bluetoothModel.systemInfoPacketData?.sd_detected ?? false))
+                            Text("Model version: " + String(bluetoothModel.classifierPacketData?.classifier_version ?? 0))
                                 .font(customFontText)
-                            Text("Space remaining: " + String(bluetoothModel.systemInfoPacketData?.space_remaining ?? 0))
-                                .font(customFontText)
-                            Text("Estimated recording time: " + String(bluetoothModel.systemInfoPacketData?.estimated_recording_time ?? 0))
+                            Text("Last detected: \(Date(timeIntervalSince1970: TimeInterval(bluetoothModel.classifierPacketData?.epoch_last_detection ?? 0)))")
                                 .font(customFontText)
                         }
                         .padding()
@@ -94,13 +78,15 @@ struct StatusesView: View {
                     
                     
                     VStack(alignment: .leading) {
-                        Text("Battery Status")
+                        Text("Today")
                             .font(customFontTextBold)
                             .fontWeight(.bold)
                         VStack (alignment: .leading, spacing: 10){
-                            Text("Is charging: " + String(bluetoothModel.systemInfoPacketData?.battery_charging ?? false))
+                            Text("Buzz count: " + String(bluetoothModel.classifierPacketData?.buzz_count_day ?? 0))
                                 .font(customFontText)
-                            Text("Battery Voltage: " +  String(bluetoothModel.systemInfoPacketData?.battery_voltage ?? 0))
+                            Text("Species 1 count: " +  String(bluetoothModel.classifierPacketData?.species_1_count_day ?? 0))
+                                .font(customFontText)
+                            Text("Species 2 count: " +  String(bluetoothModel.classifierPacketData?.species_2_count_day ?? 0))
                                 .font(customFontText)
                         }
                         .padding()
@@ -114,15 +100,15 @@ struct StatusesView: View {
                     .cornerRadius(10)
                     
                     VStack(alignment: .leading) {
-                        Text("GPS Location")
+                        Text("Total")
                             .font(customFontTextBold)
                             .fontWeight(.bold)
                         VStack (alignment: .leading, spacing: 10){
-                            Text("Latitude: " + String(bluetoothModel.systemInfoPacketData?.gps_location.lat ?? 0))
+                            Text("Buzz count: " + String(bluetoothModel.classifierPacketData?.buzz_count_total ?? 0))
                                 .font(customFontText)
-                            Text("Longitude: " +  String(bluetoothModel.systemInfoPacketData?.gps_location.lon ?? 0))
+                            Text("Species 1 count: " +  String(bluetoothModel.classifierPacketData?.species_1_count_total ?? 0))
                                 .font(customFontText)
-                            Text("Elevation: " +  String(bluetoothModel.systemInfoPacketData?.gps_location.elev ?? 0) + " m")
+                            Text("Species 2 count: " +  String(bluetoothModel.classifierPacketData?.species_2_count_total ?? 0))
                                 .font(customFontText)
                         }
                         .padding()
@@ -140,24 +126,9 @@ struct StatusesView: View {
                 .padding()
                 
             }
-        }.onAppear {
-            // Add an observer to monitor changes to systemInfoPacketData
-            bluetoothModel.$configPacketData
-                .sink { configPacketData in
-                    // Update deviceEnabled when systemInfoPacketData changes
-                    self.updateDeviceEnabledOn(configPacketData)
-                }
-                .store(in: &cancellables) // Store the cancellable to avoid memory leaks
-            
-            // Trigger the initial update
-            self.updateDeviceEnabledOn(bluetoothModel.configPacketData)
         }
         .frame(maxWidth: .infinity)
         .background(Color(white:0.90))
-    }
-    private func updateDeviceEnabledOn(_ configPacketData: ConfigPacketData?) {
-        // Update deviceEnabled based on systemInfoPacketData
-        deviceEnabled = configPacketData?.enableRecording ?? false
     }
 }
 
@@ -165,5 +136,5 @@ struct StatusesView: View {
 
 
 #Preview {
-    StatusesView()
+    ClassifierView()
 }

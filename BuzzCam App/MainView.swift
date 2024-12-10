@@ -247,8 +247,11 @@ struct MainView: View {
                             // sensor readings dropdown
                             SensorReadingView()
                             Spacer()
+                            ClassifierView()
+                            Spacer()
                             // ranging dropdown
                             RangingView()
+                            
 
                         }.background(
                             Color(red: 54/255, green: 58/255, blue: 1/255)
