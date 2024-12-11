@@ -57,8 +57,8 @@ struct SensorReadingView: View {
                                 .frame(width: 30, height: 30)
                             Text("Temperature:")
                                 .font(customFontText)
+                                .fontWeight(.semibold)
                             Text(String(bluetoothModel.systemInfoPacketData?.temperature ?? 0))
-                                .font(customFontTextBold)
                         }
                         
                         HStack {
@@ -67,29 +67,30 @@ struct SensorReadingView: View {
                                 .frame(width: 30, height: 30)
                             Text("Humidity:")
                                 .font(customFontText)
+                                .fontWeight(.semibold)
                             Text(String(bluetoothModel.systemInfoPacketData?.humidity ?? 0))
-                                .font(customFontTextBold)
+                                
                         }
                         
                         HStack {
                             Image(systemName: "wind").resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 30, height: 30)
-                            Text("CO2:")
-                                .font(.body)
+                            Text("CO2:").font(customFontText)
+                                .fontWeight(.semibold)
                             Text(String(bluetoothModel.systemInfoPacketData?.co2 ?? 0))
-                                .font(customFontTextBold)
+                                
                         }
                         
-                        HStack {
-                            Image(systemName: "lightbulb.max").resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 30, height: 30)
-                            Text("Light level:")
-                                .font(customFontText)
-                            Text(String(bluetoothModel.systemInfoPacketData?.light_level ?? 0))
-                                .font(customFontTextBold)
-                        }
+//                        HStack {
+//                            Image(systemName: "lightbulb.max").resizable()
+//                                .aspectRatio(contentMode: .fit)
+//                                .frame(width: 30, height: 30)
+//                            Text("Light level:")
+//                                .font(customFontText)
+//                            Text(String(bluetoothModel.systemInfoPacketData?.light_level ?? 0))
+//                                .font(customFontTextBold)
+//                        }
                     }
                     .padding()
                     .frame(

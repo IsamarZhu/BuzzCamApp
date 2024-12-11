@@ -64,7 +64,7 @@ struct RangingView: View {
                             .fontWeight(.bold)
                         
                         HStack {
-                            Text("Number of Nearby Devices: ").font(customFontText)
+                            Text("Number of Nearby Devices: ").font(customFontText).fontWeight(.semibold)
                             // \(bluetoothModel.systemInfoPacketData?.number_discovered_devices ?? 0)
                             Text("\(bluetoothModel.systemInfoPacketData?.discovered_devices.count ?? 0)").font(customFontText)
                         }.padding(.top, 10)

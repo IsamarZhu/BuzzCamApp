@@ -74,12 +74,33 @@ struct StatusesView: View {
                             .font(customFontTextBold)
                             .fontWeight(.bold)
                         VStack (alignment: .leading, spacing: 10){
-                            Text("Detected: " + String(bluetoothModel.systemInfoPacketData?.sd_detected ?? false))
-                                .font(customFontText)
-                            Text("Space remaining: " + String(bluetoothModel.systemInfoPacketData?.space_remaining ?? 0))
-                                .font(customFontText)
-                            Text("Estimated recording time: " + String(bluetoothModel.systemInfoPacketData?.estimated_recording_time ?? 0))
-                                .font(customFontText)
+                            HStack {
+                                Text("Detected:")
+                                    .font(customFontText).fontWeight(.semibold)
+                                Text(String(bluetoothModel.systemInfoPacketData?.sd_detected ?? false)).font(customFontText)
+                            }
+                            
+                            HStack {
+                                Text("Space remaining:")
+                                    .font(customFontText)
+                                    .fontWeight(.semibold)
+                                Text(String(bluetoothModel.systemInfoPacketData?.space_remaining ?? 0))
+                                    .font(customFontText)
+                            }
+
+                            HStack {
+                                Text("Estimated recording time:")
+                                    .font(customFontText)
+                                    .fontWeight(.semibold)
+                                Text(String(bluetoothModel.systemInfoPacketData?.estimated_recording_time ?? 0))
+                                    .font(customFontText)
+                            }
+//                            Text("Detected: " + String(bluetoothModel.systemInfoPacketData?.sd_detected ?? false))
+//                                .font(customFontText)
+//                            Text("Space remaining: " + String(bluetoothModel.systemInfoPacketData?.space_remaining ?? 0))
+//                                .font(customFontText)
+//                            Text("Estimated recording time: " + String(bluetoothModel.systemInfoPacketData?.estimated_recording_time ?? 0))
+//                                .font(customFontText)
                         }
                         .padding()
                     }
@@ -98,10 +119,25 @@ struct StatusesView: View {
                             .font(customFontTextBold)
                             .fontWeight(.bold)
                         VStack (alignment: .leading, spacing: 10){
-                            Text("Is charging: " + String(bluetoothModel.systemInfoPacketData?.battery_charging ?? false))
-                                .font(customFontText)
-                            Text("Battery Voltage: " +  String(bluetoothModel.systemInfoPacketData?.battery_voltage ?? 0))
-                                .font(customFontText)
+                            HStack {
+                                Text("Is charging:")
+                                    .font(customFontText)
+                                    .fontWeight(.semibold)
+                                Text(String(bluetoothModel.systemInfoPacketData?.battery_charging ?? false))
+                                    .font(customFontText)
+                            }
+
+                            HStack {
+                                Text("Battery Voltage:")
+                                    .font(customFontText)
+                                    .fontWeight(.semibold)
+                                Text(String(bluetoothModel.systemInfoPacketData?.battery_voltage ?? 0))
+                                    .font(customFontText)
+                            }
+//                            Text("Is charging: " + String(bluetoothModel.systemInfoPacketData?.battery_charging ?? false))
+//                                .font(customFontText)
+//                            Text("Battery Voltage: " +  String(bluetoothModel.systemInfoPacketData?.battery_voltage ?? 0))
+//                                .font(customFontText)
                         }
                         .padding()
                     }
@@ -118,12 +154,36 @@ struct StatusesView: View {
                             .font(customFontTextBold)
                             .fontWeight(.bold)
                         VStack (alignment: .leading, spacing: 10){
-                            Text("Latitude: " + String(bluetoothModel.systemInfoPacketData?.gps_location.lat ?? 0))
-                                .font(customFontText)
-                            Text("Longitude: " +  String(bluetoothModel.systemInfoPacketData?.gps_location.lon ?? 0))
-                                .font(customFontText)
-                            Text("Elevation: " +  String(bluetoothModel.systemInfoPacketData?.gps_location.elev ?? 0) + " m")
-                                .font(customFontText)
+                            HStack {
+                                Text("Latitude:")
+                                    .font(customFontText)
+                                    .fontWeight(.semibold)
+                                Text(String(bluetoothModel.systemInfoPacketData?.gps_location.lat ?? 0))
+                                    .font(customFontText)
+                            }
+
+                            HStack {
+                                Text("Longitude:")
+                                    .font(customFontText)
+                                    .fontWeight(.semibold)
+                                Text(String(bluetoothModel.systemInfoPacketData?.gps_location.lon ?? 0))
+                                    .font(customFontText)
+                            }
+
+                            HStack {
+                                Text("Elevation:")
+                                    .font(customFontText)
+                                    .fontWeight(.semibold)
+                                Text("\(String(bluetoothModel.systemInfoPacketData?.gps_location.elev ?? 0)) m")
+                                    .font(customFontText)
+                            }
+
+//                            Text("Latitude: " + String(bluetoothModel.systemInfoPacketData?.gps_location.lat ?? 0))
+//                                .font(customFontText)
+//                            Text("Longitude: " +  String(bluetoothModel.systemInfoPacketData?.gps_location.lon ?? 0))
+//                                .font(customFontText)
+//                            Text("Elevation: " +  String(bluetoothModel.systemInfoPacketData?.gps_location.elev ?? 0) + " m")
+//                                .font(customFontText)
                         }
                         .padding()
                     }

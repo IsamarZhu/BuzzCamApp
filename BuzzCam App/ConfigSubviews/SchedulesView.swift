@@ -121,7 +121,15 @@ struct SchedulesView: View {
                 HStack {
                     Spacer()
                     VStack (alignment: .center){
-                        Text("Made with ❤️ by the Responsive Environments Lab").font(customFontTextSmall).foregroundColor(.black)
+//                        Text("Made with ❤️ by the Responsive Environments Lab").font(customFontTextSmall).foregroundColor(.black)
+                        HStack{
+                            Text("Made with ❤️ by the").font(customFontTextSmall).foregroundColor(.black)
+                            Link("Responsive Environments Lab",
+                                             destination: URL(string: "https://www.media.mit.edu/projects/buzzcam/overview/")!)
+                                            .font(customFontTextSmall)
+                                            .foregroundColor(.blue)
+                        }
+                        
                         Text("Contributors: Patrick Chwalek, Isamar Zhu").font(customFontTextSmall).foregroundColor(.black)
                     }
                     Spacer()

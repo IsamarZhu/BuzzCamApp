@@ -60,10 +60,26 @@ struct ClassifierView: View {
                             .font(customFontTextBold)
                             .fontWeight(.bold)
                         VStack (alignment: .leading, spacing: 10){
-                            Text("Model version: " + String(bluetoothModel.classifierPacketData?.classifier_version ?? 0))
-                                .font(customFontText)
-                            Text("Last detected: \(Date(timeIntervalSince1970: TimeInterval(bluetoothModel.classifierPacketData?.epoch_last_detection ?? 0)))")
-                                .font(customFontText)
+                            HStack {
+                                Text("Model version:")
+                                    .font(customFontText)
+                                    .fontWeight(.semibold)
+                                Text(String(bluetoothModel.classifierPacketData?.classifier_version ?? 0))
+                                    .font(customFontText)
+                            }
+
+                            VStack(alignment: .leading){
+                                Text("Last detected:")
+                                    .font(customFontText)
+                                    .fontWeight(.semibold)
+                                Text("\(Date(timeIntervalSince1970: TimeInterval(bluetoothModel.classifierPacketData?.epoch_last_detection ?? 0)))")
+                                    .font(customFontText)
+                            }
+
+//                            Text("Model version: " + String(bluetoothModel.classifierPacketData?.classifier_version ?? 0))
+//                                .font(customFontText)
+//                            Text("Last detected: \(Date(timeIntervalSince1970: TimeInterval(bluetoothModel.classifierPacketData?.epoch_last_detection ?? 0)))")
+//                                .font(customFontText)
                         }
                         .padding()
                     }
@@ -82,12 +98,38 @@ struct ClassifierView: View {
                             .font(customFontTextBold)
                             .fontWeight(.bold)
                         VStack (alignment: .leading, spacing: 10){
-                            Text("Buzz count: " + String(bluetoothModel.classifierPacketData?.buzz_count_day ?? 0))
-                                .font(customFontText)
-                            Text("Species 1 count: " +  String(bluetoothModel.classifierPacketData?.species_1_count_day ?? 0))
-                                .font(customFontText)
-                            Text("Species 2 count: " +  String(bluetoothModel.classifierPacketData?.species_2_count_day ?? 0))
-                                .font(customFontText)
+                            HStack {
+                                Text("Total buzz count:")
+                                    .font(customFontText)
+                                    .fontWeight(.semibold)
+                                Text(String(bluetoothModel.classifierPacketData?.buzz_count_day ?? 0))
+                                    .font(customFontText)
+                            }
+
+                            HStack {
+                                Text("Species 1 count:")
+                                    .font(customFontText)
+                                    .padding(.leading, 20)
+                                    .fontWeight(.semibold)
+                                Text(String(bluetoothModel.classifierPacketData?.species_1_count_day ?? 0))
+                                    .font(customFontText)
+                            }
+
+                            HStack {
+                                Text("Species 2 count:")
+                                    .font(customFontText)
+                                    .fontWeight(.semibold)
+                                    .padding(.leading, 20)
+                                Text(String(bluetoothModel.classifierPacketData?.species_2_count_day ?? 0))
+                                    .font(customFontText)
+                            }
+
+//                            Text("Total buzz count: " + String(bluetoothModel.classifierPacketData?.buzz_count_day ?? 0))
+//                                .font(customFontText)
+//                            Text("Species 1 count: " +  String(bluetoothModel.classifierPacketData?.species_1_count_day ?? 0))
+//                                .font(customFontText).padding(.leading, 20)
+//                            Text("Species 2 count: " +  String(bluetoothModel.classifierPacketData?.species_2_count_day ?? 0))
+//                                .font(customFontText).padding(.leading, 20)
                         }
                         .padding()
                     }
@@ -100,16 +142,42 @@ struct ClassifierView: View {
                     .cornerRadius(10)
                     
                     VStack(alignment: .leading) {
-                        Text("Total")
+                        Text("All Time")
                             .font(customFontTextBold)
                             .fontWeight(.bold)
                         VStack (alignment: .leading, spacing: 10){
-                            Text("Buzz count: " + String(bluetoothModel.classifierPacketData?.buzz_count_total ?? 0))
-                                .font(customFontText)
-                            Text("Species 1 count: " +  String(bluetoothModel.classifierPacketData?.species_1_count_total ?? 0))
-                                .font(customFontText)
-                            Text("Species 2 count: " +  String(bluetoothModel.classifierPacketData?.species_2_count_total ?? 0))
-                                .font(customFontText)
+                            HStack {
+                                Text("Total buzz count:")
+                                    .font(customFontText)
+                                    .fontWeight(.semibold)
+                                Text(String(bluetoothModel.classifierPacketData?.buzz_count_total ?? 0))
+                                    .font(customFontText)
+                            }
+
+                            HStack {
+                                Text("Species 1 count:")
+                                    .font(customFontText)
+                                    .fontWeight(.semibold)
+                                    .padding(.leading, 20)
+                                Text(String(bluetoothModel.classifierPacketData?.species_1_count_total ?? 0))
+                                    .font(customFontText)
+                            }
+
+                            HStack {
+                                Text("Species 2 count:")
+                                    .font(customFontText)
+                                    .fontWeight(.semibold)
+                                    .padding(.leading, 20)
+                                Text(String(bluetoothModel.classifierPacketData?.species_2_count_total ?? 0))
+                                    .font(customFontText)
+                            }
+
+//                            Text("Total buzz count: " + String(bluetoothModel.classifierPacketData?.buzz_count_total ?? 0))
+//                                .font(customFontText)
+//                            Text("Species 1 count: " +  String(bluetoothModel.classifierPacketData?.species_1_count_total ?? 0))
+//                                .font(customFontText).padding(.leading, 20)
+//                            Text("Species 2 count: " +  String(bluetoothModel.classifierPacketData?.species_2_count_total ?? 0))
+//                                .font(customFontText).padding(.leading, 20)
                         }
                         .padding()
                     }
