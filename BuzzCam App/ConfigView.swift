@@ -33,8 +33,6 @@ struct ConfigView: View {
                     SystemControlView()
                     Spacer()
                     SchedulesView()
-                    Spacer()
-                    ClassifierView()
 
                 }
                 else {

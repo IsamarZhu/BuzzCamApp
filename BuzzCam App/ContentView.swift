@@ -69,7 +69,7 @@ struct ContentView: View {
                             Image("BuzzCam Logo 2")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 200, height: 200)
+                                .frame(width: 100, height: 100)
                                 .edgesIgnoringSafeArea(.all)
                                 .aspectRatio(contentMode: .fill)
                                 .opacity(showMainContent ? 0 : 1) // Fade out when showMainContent is true

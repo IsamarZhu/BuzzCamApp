@@ -70,7 +70,7 @@ struct AudioConfigView: View {
                             .aspectRatio(contentMode: .fill)
                             .frame(width: proxy.size.width, height: proxy.size.height)
                             .clipped()
-                            .opacity(0.7)
+                            .opacity(0.3)
                             .allowsHitTesting(false) // Prevents the image from capturing taps
                             .contentShape(Rectangle()) // Set content shape to Rectangle to allow tap gesture
                     }
