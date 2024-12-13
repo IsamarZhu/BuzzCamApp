@@ -130,7 +130,20 @@ struct SchedulesView: View {
                                             .foregroundColor(.blue)
                         }
                         
-                        Text("Contributors: Patrick Chwalek, Isamar Zhu").font(customFontTextSmall).foregroundColor(.black)
+                        HStack {
+                            //                        Text("Contributors: Patrick Chwalek, Isamar Zhu").font(customFontTextSmall).foregroundColor(.black)
+                            Text("Contributors:").font(customFontTextSmall).foregroundColor(.black)
+                            Link("Patrick Chwalek",
+                                             destination: URL(string: "https://patrickchwalek.com/")!)
+                                            .font(customFontTextSmall)
+                                            .foregroundColor(.blue)
+                            Text("-").font(customFontTextSmall).foregroundColor(.black)
+                            Link("Isamar Zhu",
+                                             destination: URL(string: "https://www.linkedin.com/in/isamar-zhu")!)
+                                            .font(customFontTextSmall)
+                                            .foregroundColor(.blue)
+
+                        }
                     }
                     Spacer()
                 }.padding(.top, 20)
