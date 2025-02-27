@@ -78,7 +78,7 @@ struct SensorReadingView: View {
                                 .frame(width: 30, height: 30)
                             Text("CO2:").font(customFontText)
                                 .fontWeight(.semibold)
-                            Text(String(bluetoothModel.systemInfoPacketData?.co2 ?? 0))
+                            Text(String(bluetoothModel.systemInfoPacketData?.gas ?? 0))
                                 
                         }
                         

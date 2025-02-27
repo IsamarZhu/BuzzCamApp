@@ -249,6 +249,8 @@ struct MainView: View {
                             Spacer()
                             ClassifierView()
                             Spacer()
+                            LoRaView()
+                            Spacer()
                             // ranging dropdown
                             RangingView()
                             

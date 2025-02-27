@@ -64,7 +64,7 @@ struct ClassifierView: View {
                                 Text("Model version:")
                                     .font(customFontText)
                                     .fontWeight(.semibold)
-                                Text(String(bluetoothModel.classifierPacketData?.classifier_version ?? 0))
+                                Text(String(bluetoothModel.systemInfoPacketData?.buzz_summary_data.classifierVersion ?? 0))
                                     .font(customFontText)
                             }
 
@@ -72,7 +72,7 @@ struct ClassifierView: View {
                                 Text("Last detected:")
                                     .font(customFontText)
                                     .fontWeight(.semibold)
-                                Text("\(Date(timeIntervalSince1970: TimeInterval(bluetoothModel.classifierPacketData?.epoch_last_detection ?? 0)))")
+                                Text("\(Date(timeIntervalSince1970: TimeInterval(bluetoothModel.systemInfoPacketData?.buzz_summary_data.lastDetectionEpoch ?? 0)))")
                                     .font(customFontText)
                             }
 
@@ -94,7 +94,7 @@ struct ClassifierView: View {
                     
                     
                     VStack(alignment: .leading) {
-                        Text("Today")
+                        Text("Interval")
                             .font(customFontTextBold)
                             .fontWeight(.bold)
                         VStack (alignment: .leading, spacing: 10){
@@ -102,7 +102,7 @@ struct ClassifierView: View {
                                 Text("Total buzz count:")
                                     .font(customFontText)
                                     .fontWeight(.semibold)
-                                Text(String(bluetoothModel.classifierPacketData?.buzz_count_day ?? 0))
+                                Text(String(bluetoothModel.systemInfoPacketData?.buzz_interval_data.buzzCount ?? 0))
                                     .font(customFontText)
                             }
 
@@ -111,7 +111,7 @@ struct ClassifierView: View {
                                     .font(customFontText)
                                     .padding(.leading, 20)
                                     .fontWeight(.semibold)
-                                Text(String(bluetoothModel.classifierPacketData?.species_1_count_day ?? 0))
+                                Text(String(bluetoothModel.systemInfoPacketData?.buzz_interval_data.species1Count ?? 0))
                                     .font(customFontText)
                             }
 
@@ -120,7 +120,15 @@ struct ClassifierView: View {
                                     .font(customFontText)
                                     .fontWeight(.semibold)
                                     .padding(.leading, 20)
-                                Text(String(bluetoothModel.classifierPacketData?.species_2_count_day ?? 0))
+                                Text(String(bluetoothModel.systemInfoPacketData?.buzz_interval_data.species2Count ?? 0))
+                                    .font(customFontText)
+                            }
+                            
+                            HStack {
+                                Text("Transmission interval (mins):")
+                                    .font(customFontText)
+                                    .fontWeight(.semibold)
+                                Text(String(bluetoothModel.systemInfoPacketData?.buzz_interval_data.transmissionIntervalM ?? 0))
                                     .font(customFontText)
                             }
 
@@ -150,7 +158,7 @@ struct ClassifierView: View {
                                 Text("Total buzz count:")
                                     .font(customFontText)
                                     .fontWeight(.semibold)
-                                Text(String(bluetoothModel.classifierPacketData?.buzz_count_total ?? 0))
+                                Text(String(bluetoothModel.systemInfoPacketData?.buzz_summary_data.buzzCounter ?? 0))
                                     .font(customFontText)
                             }
 
@@ -159,7 +167,7 @@ struct ClassifierView: View {
                                     .font(customFontText)
                                     .fontWeight(.semibold)
                                     .padding(.leading, 20)
-                                Text(String(bluetoothModel.classifierPacketData?.species_1_count_total ?? 0))
+                                Text(String(bluetoothModel.systemInfoPacketData?.buzz_summary_data.species1Count ?? 0))
                                     .font(customFontText)
                             }
 
@@ -168,9 +176,10 @@ struct ClassifierView: View {
                                     .font(customFontText)
                                     .fontWeight(.semibold)
                                     .padding(.leading, 20)
-                                Text(String(bluetoothModel.classifierPacketData?.species_2_count_total ?? 0))
+                                Text(String(bluetoothModel.systemInfoPacketData?.buzz_summary_data.species2Count ?? 0))
                                     .font(customFontText)
                             }
+                            
 
 //                            Text("Total buzz count: " + String(bluetoothModel.classifierPacketData?.buzz_count_total ?? 0))
 //                                .font(customFontText)
@@ -180,6 +189,7 @@ struct ClassifierView: View {
 //                                .font(customFontText).padding(.leading, 20)
                         }
                         .padding()
+                        
                     }
                     .padding()
                     .frame(

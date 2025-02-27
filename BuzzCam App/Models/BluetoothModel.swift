@@ -22,7 +22,7 @@ class BluetoothModel: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
     @Published var configPacketData_LowPower: ConfigPacketData_LowPower?
     @Published var specialFunctionData: SpecialFunctionData?
     @Published var configPacketData: ConfigPacketData?
-    @Published var classifierPacketData: ClassifierPacketData?
+//    @Published var classifierPacketData: ClassifierPacketData?
     
     // Service and characteristic UUIDs
     private let serviceUUID = CBUUID(string: "CE80")
@@ -100,7 +100,7 @@ class BluetoothModel: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
         configPacketData_LowPower?.reset()
         specialFunctionData?.reset()
         configPacketData?.reset()
-        classifierPacketData?.reset()
+//        classifierPacketData?.reset()
         
         // Start scanning again when reset and disconnected
         if centralManager.state == .poweredOn {
@@ -242,8 +242,8 @@ class BluetoothModel: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
                             humidity: message.systemInfoPacket.hasSimpleSensorReading ? message.systemInfoPacket.simpleSensorReading.humidity :
                                 self.systemInfoPacketData?.humidity ?? 0,
                             
-                            co2: message.systemInfoPacket.hasSimpleSensorReading ? message.systemInfoPacket.simpleSensorReading.co2 :
-                                self.systemInfoPacketData?.co2 ?? 0,
+                            gas: message.systemInfoPacket.hasSimpleSensorReading ? message.systemInfoPacket.simpleSensorReading.gas :
+                                self.systemInfoPacketData?.gas ?? 0,
                             
                             light_level: message.systemInfoPacket.hasSimpleSensorReading ? message.systemInfoPacket.simpleSensorReading.lightLevel :
                                 self.systemInfoPacketData?.light_level ?? 0,
@@ -268,23 +268,29 @@ class BluetoothModel: NSObject, ObservableObject, CBCentralManagerDelegate, CBPe
                             
                             discovered_devices: message.systemInfoPacket.discoveredDevices,
                             
-                            gps_location: message.systemInfoPacket.hasGpsLocation ? message.systemInfoPacket.gpsLocation : self.systemInfoPacketData?.gps_location ?? Location()
+                            gps_location: message.systemInfoPacket.hasGpsLocation ? message.systemInfoPacket.gpsLocation : self.systemInfoPacketData?.gps_location ?? Location(),
+                            
+                            buzz_interval_data: message.systemInfoPacket.hasBuzzIntervalData ? message.systemInfoPacket.buzzIntervalData : self.systemInfoPacketData?.buzz_interval_data ?? BuzzIntervalData(),
+                            
+                            buzz_summary_data: message.systemInfoPacket.hasBuzzSummaryData ? message.systemInfoPacket.buzzSummaryData : self.systemInfoPacketData?.buzz_summary_data ?? BuzzSummaryData(),
+                            
+                            radio_power: message.systemInfoPacket.hasRadioPower ? message.systemInfoPacket.radioPower : self.systemInfoPacketData?.radio_power ?? RadioPower()
                         )
                         
                         print("systemInfoPacketData:  \(self.systemInfoPacketData)")
                     }
-                    else if case .classifierPacket(_) = payload {
-                        self.classifierPacketData = ClassifierPacketData(
-                            classifier_version: message.classifierPacket.classifierVersion,
-                            epoch_last_detection: message.classifierPacket.lastDetection,
-                            buzz_count_total: message.classifierPacket.buzzCountTotal,
-                            species_1_count_total: message.classifierPacket.species1CountTotal,
-                            species_2_count_total: message.classifierPacket.species2CountTotal,
-                            buzz_count_day: message.classifierPacket.buzzCountDay,
-                            species_1_count_day: message.classifierPacket.species1CountDay,
-                            species_2_count_day: message.classifierPacket.species2CountDay
-                        )
-                    }
+//                    else if case .classifierPacket(_) = payload {
+//                        self.classifierPacketData = ClassifierPacketData(
+//                            classifier_version: message.classifierPacket.classifierVersion,
+//                            epoch_last_detection: message.classifierPacket.lastDetection,
+//                            buzz_count_total: message.classifierPacket.buzzCountTotal,
+//                            species_1_count_total: message.classifierPacket.species1CountTotal,
+//                            species_2_count_total: message.classifierPacket.species2CountTotal,
+//                            buzz_count_day: message.classifierPacket.buzzCountDay,
+//                            species_1_count_day: message.classifierPacket.species1CountDay,
+//                            species_2_count_day: message.classifierPacket.species2CountDay
+//                        )
+//                    }
                     
                     
                     

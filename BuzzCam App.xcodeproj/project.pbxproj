@@ -63,6 +63,7 @@
 		21DE293E2D07A11900C45F89 /* ClassifierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DE293D2D07A11900C45F89 /* ClassifierView.swift */; };
 		21F495E82B212DDF008E3808 /* SensingConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F495E72B212DDF008E3808 /* SensingConfigView.swift */; };
 		21F495EA2B2783DA008E3808 /* CameraConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F495E92B2783DA008E3808 /* CameraConfigView.swift */; };
+		21FDD42F2D6FC9E000492458 /* LoRaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FDD42E2D6FC9E000492458 /* LoRaView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +136,7 @@
 		21DE293D2D07A11900C45F89 /* ClassifierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassifierView.swift; sourceTree = "<group>"; };
 		21F495E72B212DDF008E3808 /* SensingConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensingConfigView.swift; sourceTree = "<group>"; };
 		21F495E92B2783DA008E3808 /* CameraConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraConfigView.swift; sourceTree = "<group>"; };
+		21FDD42E2D6FC9E000492458 /* LoRaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoRaView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,6 +335,7 @@
 				21C0A2092AE320FE00BA2ABC /* NearbyDevices.swift */,
 				21C0A2072AE320E000BA2ABC /* SensorReadingView.swift */,
 				21DE293D2D07A11900C45F89 /* ClassifierView.swift */,
+				21FDD42E2D6FC9E000492458 /* LoRaView.swift */,
 			);
 			path = MainSubviews;
 			sourceTree = "<group>";
@@ -518,6 +521,7 @@
 				21C0A2082AE320E000BA2ABC /* SensorReadingView.swift in Sources */,
 				216B6DC92B757CF8005D5538 /* LoadingParticle.swift in Sources */,
 				21F495EA2B2783DA008E3808 /* CameraConfigView.swift in Sources */,
+				21FDD42F2D6FC9E000492458 /* LoRaView.swift in Sources */,
 				2127C3B82BCF16D300196455 /* ViewfinderView.swift in Sources */,
 				21D26FFA2BC089C9008A4EF2 /* VideoPlayerView.swift in Sources */,
 				21C17DC72B854EC200A65338 /* RangingView.swift in Sources */,

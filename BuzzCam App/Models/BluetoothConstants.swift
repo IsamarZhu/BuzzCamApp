@@ -12,7 +12,7 @@ struct SystemInfoPacketData {
     var index: UInt32
     var temperature: Float
     var humidity: Float
-    var co2: Float
+    var gas: Float
     var light_level: Float
     var sd_detected: Bool = false
     var space_remaining: UInt64
@@ -23,13 +23,16 @@ struct SystemInfoPacketData {
     var mark_number: UInt32
     var discovered_devices: [Device]
     var gps_location: Location
+    var buzz_interval_data: BuzzIntervalData
+    var buzz_summary_data: BuzzSummaryData
+    var radio_power: RadioPower
     
     mutating func reset() {
         // set property default values
         index = 0
         temperature = 0.0
         humidity = 0.0
-        co2 = 0.0
+        gas = 0.0
         light_level = 0.0
         sd_detected = false
         space_remaining = 0
@@ -40,6 +43,9 @@ struct SystemInfoPacketData {
         mark_number = 0
         discovered_devices = []
         gps_location = Location()
+        buzz_interval_data = BuzzIntervalData()
+        buzz_summary_data = BuzzSummaryData()
+        radio_power = RadioPower()
     }
 }
 
@@ -140,25 +146,25 @@ struct ConfigPacketData {
     }
 }
 
-struct ClassifierPacketData {
-    var classifier_version: Float = 0.0
-    var epoch_last_detection: UInt64 = 0
-    var buzz_count_total: UInt32 = 0
-    var species_1_count_total: UInt32 = 0
-    var species_2_count_total: UInt32 = 0
-    var buzz_count_day: UInt32 = 0
-    var species_1_count_day: UInt32 = 0
-    var species_2_count_day: UInt32 = 0
-    
-    mutating func reset() {
-        classifier_version = 0.0
-        epoch_last_detection = 0
-        buzz_count_total = 0
-        species_1_count_total = 0
-        species_2_count_total = 0
-        buzz_count_day = 0
-        species_1_count_day = 0
-        species_2_count_day = 0
-    }
-    
-}
+//struct ClassifierPacketData {
+//    var classifier_version: Float = 0.0
+//    var epoch_last_detection: UInt64 = 0
+//    var buzz_count_total: UInt32 = 0
+//    var species_1_count_total: UInt32 = 0
+//    var species_2_count_total: UInt32 = 0
+//    var buzz_count_day: UInt32 = 0
+//    var species_1_count_day: UInt32 = 0
+//    var species_2_count_day: UInt32 = 0
+//    
+//    mutating func reset() {
+//        classifier_version = 0.0
+//        epoch_last_detection = 0
+//        buzz_count_total = 0
+//        species_1_count_total = 0
+//        species_2_count_total = 0
+//        buzz_count_day = 0
+//        species_1_count_day = 0
+//        species_2_count_day = 0
+//    }
+//    
+//}
